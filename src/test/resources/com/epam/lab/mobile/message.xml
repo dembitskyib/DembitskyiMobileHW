@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+	<from>lab.test.sending@gmail.com</from>
+	<to>dembitskyib@gmail.com</to>
+	<subject>Some subject</subject>
+	<text>Some message</text>
+</message>
