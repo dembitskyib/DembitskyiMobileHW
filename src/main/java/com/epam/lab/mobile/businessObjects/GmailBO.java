@@ -34,23 +34,25 @@ public class GmailBO {
 		gmailViewMessagePage = new GmailViewMessagePage(driver, pageUpdateTimeOut);
 	}
 
-	public void skipInitialPage() {
-		LOGGER.info(String.format(LOG_TAP_MESSAGE, "ok on initial page"));
+	public String skipInitialPage() {
+		LOGGER.info(String.format(LOG_TAP_MESSAGE, "OK button on initial page"));
 		gmailInitialPage.tapOk();
-		LOGGER.info(String.format(LOG_TAP_MESSAGE, "ok on accounts page"));
+		LOGGER.info(String.format(LOG_TAP_MESSAGE, "OK button on accounts page"));
 		gmailAccountsPage.tapGoToGmail();
+		return gmailAccountsPage.getCurrentActivity();
 	}
 
-	public void navigateToAccount(String accountName) {
+	public String navigateToAccount(String accountName) {
 		LOGGER.info(String.format(LOG_TAP_MESSAGE, "widget button"));
 		gmailMailPage.tapWidgetButton();
 		LOGGER.info(String.format(LOG_TAP_MESSAGE, "choose account button"));
 		gmailMailPage.tapAccountChooseButton();
 		LOGGER.info(String.format("Tapping on '%s' account name", accountName));
 		gmailMailPage.tapAccount(accountName);
+		return gmailMailPage.getCurrentActivity();
 	}
 
-	public void sendMessage(Message message) {
+	public String sendMessage(Message message) {
 		LOGGER.info(String.format(LOG_TAP_MESSAGE, "compose button"));
 		gmailMailPage.tapComposeButton();
 		LOGGER.info(String.format(LOG_FILL_FIELD_MESSAGE, "subject", message.getSubject()));
@@ -61,6 +63,7 @@ public class GmailBO {
 		gmailComposePage.fillToField(message.getTo());
 		LOGGER.info(String.format(LOG_TAP_MESSAGE, "send button"));
 		gmailComposePage.tapSendButton();
+		return gmailComposePage.getCurrentActivity();
 	}
 
 	public boolean isMessageValid(Message message) {
@@ -77,6 +80,7 @@ public class GmailBO {
 			LOGGER.info(String.format(INCORRECT_FIELD_MESSAGE, "Message", gmailViewMessagePage.getMessageText()));
 			isValid = false;
 		}
+		LOGGER.info(String.format("Validation done with result %s", isValid));
 		return isValid;
 	}
 }

@@ -37,12 +37,13 @@ public class GmailMailPage extends GmailPageObject {
 	}
 
 	public void waitUntilNewMessage() {
+		String sendingDate = DateUtil.getCurrentDate("HH:mm");
 		String messageDate;
 		do {
 			swipe(messageList.get(0), composeButton);
 			messageDate = messageList.get(0).getAttribute("contentDescription");
 			messageDate = messageDate.substring(messageDate.lastIndexOf(" ") + 1);
-		} while (!DateUtil.compareDate(messageDate));
+		} while (messageDate.compareTo(sendingDate) < 0);
 
 	}
 

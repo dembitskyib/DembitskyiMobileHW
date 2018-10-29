@@ -47,14 +47,10 @@ public class GmailMobileTest {
 
 	@Test
 	public void loginTest() {
-		gmailBO.skipInitialPage();
-		assertEquals(androidDriver.currentActivity(), GMAIL_ACTIVITY_NAME);
-		gmailBO.navigateToAccount(message.getFrom());
-		assertEquals(androidDriver.currentActivity(), GMAIL_ACTIVITY_NAME);
-		gmailBO.sendMessage(message);
-		assertEquals(androidDriver.currentActivity(), GMAIL_ACTIVITY_NAME);
-		gmailBO.navigateToAccount(message.getTo());
-		assertEquals(androidDriver.currentActivity(), GMAIL_ACTIVITY_NAME);
+		assertEquals(gmailBO.skipInitialPage(), GMAIL_ACTIVITY_NAME);
+		assertEquals(gmailBO.navigateToAccount(message.getFrom()), GMAIL_ACTIVITY_NAME);
+		assertEquals(gmailBO.sendMessage(message), GMAIL_ACTIVITY_NAME);
+		assertEquals(gmailBO.navigateToAccount(message.getTo()), GMAIL_ACTIVITY_NAME);
 		assertTrue(gmailBO.isMessageValid(message));
 	}
 

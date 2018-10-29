@@ -55,4 +55,8 @@ public abstract class GmailPageObject {
 		action.longPress(fromElement).moveTo(toElement).release().perform();
 	}
 
+	public String getCurrentActivity() {
+		return driver.currentActivity();
+	}
+
 }

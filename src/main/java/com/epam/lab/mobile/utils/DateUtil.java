@@ -5,9 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateUtil {
-	public static boolean compareDate(String date) {
-		DateFormat format = new SimpleDateFormat("HH:mm");
-		String systemDate = format.format(new Date());
-		return systemDate.equals(date);
+	public static String getCurrentDate(String formatPattern) {
+		DateFormat format = new SimpleDateFormat(formatPattern);
+		return format.format(new Date());
 	}
+
 }
